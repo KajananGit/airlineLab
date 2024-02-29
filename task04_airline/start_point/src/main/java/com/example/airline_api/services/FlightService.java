@@ -8,6 +8,7 @@ import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class FlightService {
         return flight;
     }
 
+    @Transactional
     public Flight addPassengerToFlight(long id, FlightDTO flightDTO) {
         Flight flight = flightRepository.findById(id).get();
         for(Long passengerIds : flightDTO.getPassengerIds()) {

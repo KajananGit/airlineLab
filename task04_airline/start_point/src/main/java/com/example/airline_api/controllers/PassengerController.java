@@ -29,6 +29,7 @@ public class PassengerController {
         return null;
     }
 
+
     // Add a new passenger
     @PostMapping
     public ResponseEntity<Passenger> addNewPassenger(){
