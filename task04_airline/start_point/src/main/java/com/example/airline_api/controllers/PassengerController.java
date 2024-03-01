@@ -1,5 +1,6 @@
 package com.example.airline_api.controllers;
 
+import com.example.airline_api.models.Flight;
 import com.example.airline_api.models.Passenger;
 import com.example.airline_api.services.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,17 @@ public class PassengerController {
 
     // Display specific passenger details
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Passenger> getPassengerById(){
-        return null;
+    public ResponseEntity<Passenger> getPassengerById(@PathVariable long id){
+        Passenger passenger = passengerService.getPassengerById(id);
+        return new ResponseEntity<>(passenger, HttpStatus.OK);
     }
 
 
     // Add a new passenger
     @PostMapping
-    public ResponseEntity<Passenger> addNewPassenger(){
-        return null;
+    public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger){
+        passengerService.savePassenger(passenger);
+        return new ResponseEntity<>(passenger, HttpStatus.OK);
     }
 
 }

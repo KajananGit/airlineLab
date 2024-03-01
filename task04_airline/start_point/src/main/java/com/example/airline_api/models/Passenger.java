@@ -20,6 +20,8 @@ public class Passenger {
     @Column(name = "email")
     private String email;
 
+    // we are ignoring the passengers property from the flight class
+    // to avoid a potential infinite loop
     @JsonIgnoreProperties("passengers")
     @ManyToMany(mappedBy = "passengers")
     private List<Flight> flights;

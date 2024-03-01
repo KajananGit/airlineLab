@@ -34,6 +34,8 @@ public class FlightService {
         return flightRepository.findById(id).get();
     }
 
+
+    //No need to use a DTO it is optional in this case
     public Flight addNewFlight(FlightDTO flightDTO) {
         Flight flight = new Flight(flightDTO.getDestination(), flightDTO.getCapacity(), flightDTO.getDepartureDate(), flightDTO.getDepartureTime());
         flightRepository.save(flight);

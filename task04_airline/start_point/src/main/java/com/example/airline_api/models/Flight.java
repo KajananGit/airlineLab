@@ -26,12 +26,14 @@ public class Flight {
     @Column(name = "departure_time")
     private String departureTime;
 
-    @JsonIgnoreProperties("flight")
+    // we are ignoring the flights property from the passenger class
+    // to avoid a potential infinite loop
+    @JsonIgnoreProperties("flights")
     @ManyToMany
     @JoinTable(
             name = "bookings",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "passenger_id")
+            joinColumns = @JoinColumn(name = "flight_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "passenger_id", nullable = false)
     )
     private List<Passenger> passengers;
 
